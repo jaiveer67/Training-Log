@@ -7,7 +7,7 @@ development of a training log application.
 This application will allow the user to keep a record
 of their training on a regular basis.
 
-This application will contain 4 **main** categories
+Each Training session will contain 4 **main** categories
 - Type of exercise/training
 - Duration of exercise
 - Distance
@@ -24,6 +24,6 @@ and a training log is something I use on a daily basis.
 ## User Stories
 
 - As a user, I want to be able to add a workout to my training log
-- As a user, I want to be able to see a summary of my training
+- As a user, I want to be able to remove a workout from my training log
+- As a user, I want to be able to give my workouts an effort rating
 - As a user, I want to be able to add a description of my workouts
-- As a user, I want to be able to select a workout and see its details
