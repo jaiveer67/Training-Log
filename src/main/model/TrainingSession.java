@@ -18,11 +18,11 @@ public class TrainingSession {
     public TrainingSession(String workoutType, Integer workoutLength,
                            double distanceTravelled, String workoutDescription,
                            Integer workoutEffort) {
-        name = workoutType;
-        duration = workoutLength;
-        distance = distanceTravelled;
-        notes = workoutDescription;
-        effort = workoutEffort;
+        this.name = workoutType;
+        this.duration = workoutLength;
+        this.distance = distanceTravelled;
+        this.notes = workoutDescription;
+        this.effort = workoutEffort;
     }
 
     public String getName() {
@@ -48,4 +48,5 @@ public class TrainingSession {
     public int getEffort() {
         return effort;
     }
+
 }
