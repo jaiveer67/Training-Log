@@ -23,7 +23,7 @@ public class TrainingLogApp {
 
     // MODIFIES: this
     // EFFECTS: processes user input
-    @SuppressWarnings("checkstyle:MethodLength")
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private void runTrainingLog() {
         boolean keepGoing = true;
         String command1 = null;
