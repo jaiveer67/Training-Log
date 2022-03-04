@@ -1,6 +1,9 @@
 package model;
 
-public class TrainingSession {
+import org.json.JSONObject;
+import persistence.Writable;
+
+public class TrainingSession implements Writable {
     private String name;
     private int duration;
     private double distance;
@@ -26,18 +29,23 @@ public class TrainingSession {
         this.effort = workoutEffort;
     }
 
+    // EFFECTS: returns name of training session
     public String getName() {
         return name;
     }
 
+    // EFFECTS: returns duration of training session
     public int getDuration() {
         return duration;
     }
 
+    // EFFECTS: returns distance of training session
     public double getDistance() {
         return distance;
     }
 
+    // EFFECTS: returns notes from training session,
+    //          returns empty string if no notes are provided
     public String getNotes() {
         if (notes.isEmpty()) {
             return " ";
@@ -46,15 +54,20 @@ public class TrainingSession {
         }
     }
 
+    // EFFECTS: returns effort of training session on a scale of [1-10]
     public int getEffort() {
         return effort;
     }
 
-    public String printSession() {
-        return "\nWorkout Type: " + session.getName() + "\nWorkout Duration: "
-                + session.getDuration() + "\nWorkout Distance: " + session.getDistance()
-                + "\nWorkout Notes: " + session.getNotes() + "\nWorkout Effort: " + session.getEffort();
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("duration", duration);
+        json.put("distance", distance);
+        json.put("notes", notes);
+        json.put("effort", effort);
+        return json;
     }
-
 
 }
