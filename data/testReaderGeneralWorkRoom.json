@@ -1,0 +1,19 @@
+{
+  "name": "My work room",
+  "training sessions": [
+    {
+      "duration": 30,
+      "notes": "",
+      "distance": 6.0,
+      "name": "Run",
+      "effort": 6
+    },
+    {
+      "duration": 25,
+      "notes": "fun swim",
+      "distance": 1.6,
+      "name": "Swim",
+      "effort": 3
+    }
+  ]
+}

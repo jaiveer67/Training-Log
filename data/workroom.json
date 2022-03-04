@@ -1,9 +1,9 @@
 {
     "training sessions": [{
         "duration": 35,
-        "notes": "Super fun swim!",
-        "distance": 4,
-        "name": "Swim",
+        "notes": "",
+        "distance": 4.5,
+        "name": "Run",
         "effort": 3
     }],
     "name": "Jaiveer's workroom"

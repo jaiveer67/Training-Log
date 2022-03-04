@@ -31,7 +31,7 @@ public class TrainingLogApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: processes user input
+    // EFFECTS: initiates training log
     private void runTrainingLog() {
         boolean keepGoing = true;
         String command = null;
@@ -130,6 +130,7 @@ public class TrainingLogApp {
         return session;
     }
 
+    // MODIFIES: this
     // EFFECTS: saves the workroom to file
     private void saveWorkRoom() {
         try {
