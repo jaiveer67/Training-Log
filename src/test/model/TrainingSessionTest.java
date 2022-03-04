@@ -29,7 +29,7 @@ class TrainingSessionTest {
         assertEquals(30, testSession1.getDuration());
         assertEquals(6.2, testSession1.getDistance());
         assertEquals("Easy jog with a friend", testSession1.getNotes());
-        assertEquals(null, testSession2.getNotes());
+        assertEquals(" ", testSession2.getNotes());
         assertEquals(6, testSession1.getEffort());
     }
 

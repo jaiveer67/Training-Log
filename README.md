@@ -27,3 +27,5 @@ and a training log is something I use on a daily basis.
 - As a user, I want to be able to remove a workout from my training log
 - As a user, I want to be able to give my workouts an effort rating
 - As a user, I want to be able to add a description of my workouts
+- As a user, I want to be able to save my training log
+- As a user, I want to be able to load my previously saved training log

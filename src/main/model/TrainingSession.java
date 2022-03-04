@@ -6,6 +6,7 @@ public class TrainingSession {
     private double distance;
     private String notes;
     private int effort;
+    private TrainingSession session;
 
     /*
     REQUIRES: duration >= 0, distance >= 0, 1 >= effort <= 10
@@ -39,7 +40,7 @@ public class TrainingSession {
 
     public String getNotes() {
         if (notes.isEmpty()) {
-            return null;
+            return " ";
         } else {
             return notes;
         }
@@ -48,5 +49,12 @@ public class TrainingSession {
     public int getEffort() {
         return effort;
     }
+
+    public String printSession() {
+        return "\nWorkout Type: " + session.getName() + "\nWorkout Duration: "
+                + session.getDuration() + "\nWorkout Distance: " + session.getDistance()
+                + "\nWorkout Notes: " + session.getNotes() + "\nWorkout Effort: " + session.getEffort();
+    }
+
 
 }

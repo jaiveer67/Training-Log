@@ -59,5 +59,6 @@ class ListOfTrainingSessionTest {
         assertTrue(testList.list.get(1) == testSession3);
     }
 
+
     }
 
