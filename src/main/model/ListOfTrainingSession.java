@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+// Represents a list of training sessions
 public class ListOfTrainingSession {
     ArrayList<TrainingSession> list;
 

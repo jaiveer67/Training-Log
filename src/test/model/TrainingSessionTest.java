@@ -33,4 +33,12 @@ class TrainingSessionTest {
         assertEquals(6, testSession1.getEffort());
     }
 
+    @Test
+    void testPrintSession() {
+        assertEquals("\nWorkout Type: " + "Run" + "\nWorkout Duration: "
+                        + 30 + "\nWorkout Distance: " + 6.2
+                        + "\nWorkout Notes: " + "Easy jog with a friend" + "\nWorkout Effort: " + 6,
+                testSession1.printSession());
+    }
+
 }

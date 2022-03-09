@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
+// Represents the TrainingLog Application
 public class TrainingLogApp {
 
     private static final String JSON_STORE = "./data/workroom.json";
@@ -110,7 +111,7 @@ public class TrainingLogApp {
         List<TrainingSession> trainingSessions = workRoom.getTrainingSessions();
 
         for (TrainingSession t : trainingSessions) {
-            System.out.println(t);
+            System.out.println(t.printSession());
         }
     }
 

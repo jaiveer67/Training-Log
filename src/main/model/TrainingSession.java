@@ -3,6 +3,7 @@ package model;
 import org.json.JSONObject;
 import persistence.Writable;
 
+// Represents a training session and it's different elements
 public class TrainingSession implements Writable {
     private String name;
     private int duration;
@@ -58,6 +59,14 @@ public class TrainingSession implements Writable {
     public int getEffort() {
         return effort;
     }
+
+    // EFFECTS: returns string of training session info
+    public String printSession() {
+        return "\nWorkout Type: " + this.name + "\nWorkout Duration: "
+                + this.duration + "\nWorkout Distance: " + this.distance
+                + "\nWorkout Notes: " + this.notes + "\nWorkout Effort: " + this.effort;
+    }
+
 
     @Override
     public JSONObject toJson() {
