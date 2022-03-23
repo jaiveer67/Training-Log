@@ -1,7 +1,7 @@
 package ui;
 
 import model.TrainingSession;
-import model.WorkRoom;
+import model.TrainingLog;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -13,11 +13,11 @@ import java.util.Scanner;
 // Represents the TrainingLog Application
 public class TrainingLogApp {
 
-    private static final String JSON_STORE = "./data/workroom.json";
+    private static final String JSON_STORE = "./data/trainingLog.json";
     private Scanner input;
     private Scanner scanner;
     private TrainingSession session;
-    private WorkRoom workRoom;
+    private TrainingLog trainingLog;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
@@ -25,7 +25,7 @@ public class TrainingLogApp {
     public TrainingLogApp() throws FileNotFoundException {
         input = new Scanner(System.in);
         scanner = new Scanner(System.in);
-        workRoom = new WorkRoom("Jaiveer's workroom");
+        trainingLog = new TrainingLog("Jaiveer's training log");
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
         runTrainingLog();
@@ -73,16 +73,16 @@ public class TrainingLogApp {
         } else if (command.equals("p")) {
             printTrainingSessions();
         } else if (command.equals("s")) {
-            saveWorkRoom();
+            saveTrainingLog();
         } else if (command.equals("l")) {
-            loadWorkRoom();
+            loadTrainingLog();
         } else {
             System.out.println("Selection not valid...");
         }
     }
 
     // MODIFIES: this
-    // EFFECTS: prompts user for workout info and adds session to workroom
+    // EFFECTS: prompts user for workout info and adds session to training log
     private void addTrainingSession() {
         System.out.println("\nWhat type of workout would you like to enter");
         String workoutName = input.next();
@@ -94,7 +94,7 @@ public class TrainingLogApp {
         String workoutNotes = scanner.nextLine();
         System.out.println("What was your perceived effort during your " + workoutName + " from 1-10?");
         String workoutEffort = input.next();
-        workRoom.addTrainingSession(stringToSession(workoutName, workoutDuration,
+        trainingLog.addTrainingSession(stringToSession(workoutName, workoutDuration,
                 workoutDistance, workoutNotes, workoutEffort));
         displayWorkout(workoutName, workoutDuration, workoutDistance, workoutNotes, workoutEffort);
     }
@@ -103,12 +103,12 @@ public class TrainingLogApp {
     // EFFECTS: asks user if they want to remove their previous training session
     private void removeTrainingSession() {
         System.out.println("\n Most recent session has been removed");
-        workRoom.removeTrainingSession();
+        trainingLog.removeTrainingSession();
     }
 
-    // EFFECTS: prints all training sessions in workroom to the console
+    // EFFECTS: prints all training sessions in training log to the console
     private void printTrainingSessions() {
-        List<TrainingSession> trainingSessions = workRoom.getTrainingSessions();
+        List<TrainingSession> trainingSessions = trainingLog.getTrainingSessions();
 
         for (TrainingSession t : trainingSessions) {
             System.out.println(t.printSession());
@@ -132,24 +132,24 @@ public class TrainingLogApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: saves the workroom to file
-    private void saveWorkRoom() {
+    // EFFECTS: saves the training log to file
+    private void saveTrainingLog() {
         try {
             jsonWriter.open();
-            jsonWriter.write(workRoom);
+            jsonWriter.write(trainingLog);
             jsonWriter.close();
-            System.out.println("Saved " + workRoom.getName() + " to " + JSON_STORE);
+            System.out.println("Saved " + trainingLog.getName() + " to " + JSON_STORE);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }
     }
 
     // MODIFIES: this
-    // EFFECTS: loads workroom from file
-    private void loadWorkRoom() {
+    // EFFECTS: loads training log from file
+    private void loadTrainingLog() {
         try {
-            workRoom = jsonReader.read();
-            System.out.println("Loaded " + workRoom.getName() + " from " + JSON_STORE);
+            trainingLog = jsonReader.read();
+            System.out.println("Loaded " + trainingLog.getName() + " from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }

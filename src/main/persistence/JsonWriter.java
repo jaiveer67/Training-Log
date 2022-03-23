@@ -1,6 +1,6 @@
 package persistence;
 
-import model.WorkRoom;
+import model.TrainingLog;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -8,7 +8,7 @@ import java.io.*;
 // Method taken from JsonWriter class in
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
-// Represents a writer that writes JSON representation of workroom to file
+// Represents a writer that writes JSON representation of training log to file
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
@@ -27,8 +27,8 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of workroom to file
-    public void write(WorkRoom wr) {
+    // EFFECTS: writes JSON representation of training log to file
+    public void write(TrainingLog wr) {
         JSONObject json = wr.toJson();
         saveToFile(json.toString(TAB));
     }

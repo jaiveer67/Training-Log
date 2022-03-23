@@ -1,7 +1,7 @@
 package persistence;
 
 import model.TrainingSession;
-import model.WorkRoom;
+import model.TrainingLog;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 import org.json.*;
 
-// Represents a reader that reads workroom from JSON data stored in file
+// Represents a reader that reads training log from JSON data stored in file
 public class JsonReader {
     private String source;
 
@@ -24,12 +24,12 @@ public class JsonReader {
     // Method taken from JsonReader class in
     // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads training log from file and returns it;
     // throws IOException if an error occurs reading data from file
-    public WorkRoom read() throws IOException {
+    public TrainingLog read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
-        return parseWorkRoom(jsonObject);
+        return parseTrainingLog(jsonObject);
     }
 
     // Method taken from JsonWriterTest class in
@@ -46,17 +46,17 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses workroom from JSON object and returns it
-    private WorkRoom parseWorkRoom(JSONObject jsonObject) {
+    // EFFECTS: parses training log from JSON object and returns it
+    private TrainingLog parseTrainingLog(JSONObject jsonObject) {
         String name = jsonObject.getString("name");
-        WorkRoom wr = new WorkRoom(name);
+        TrainingLog wr = new TrainingLog(name);
         addTrainingSessions(wr, jsonObject);
         return wr;
     }
 
     // MODIFIES: wr
-    // EFFECTS: parses training sessions from JSON object and adds them to workroom
-    private void addTrainingSessions(WorkRoom wr, JSONObject jsonObject) {
+    // EFFECTS: parses training sessions from JSON object and adds them to training log
+    private void addTrainingSessions(TrainingLog wr, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("training sessions");
         for (Object json : jsonArray) {
             JSONObject nextTrainingSession = (JSONObject) json;
@@ -65,8 +65,8 @@ public class JsonReader {
     }
 
     // MODIFIES: wr
-    // EFFECTS: parses training session from JSON object and adds it to workroom
-    private void addTrainingSession(WorkRoom wr, JSONObject jsonObject) {
+    // EFFECTS: parses training session from JSON object and adds it to training log
+    private void addTrainingSession(TrainingLog wr, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         Integer duration = jsonObject.getInt("duration");
         Double distance = jsonObject.getDouble("distance");

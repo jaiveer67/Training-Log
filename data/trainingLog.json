@@ -13,6 +13,13 @@
             "distance": 2,
             "name": "Swim",
             "effort": 6
+        },
+        {
+            "duration": 30,
+            "notes": "",
+            "distance": 6,
+            "name": "Run",
+            "effort": 4
         }
     ],
     "name": "Jaiveer's workroom"

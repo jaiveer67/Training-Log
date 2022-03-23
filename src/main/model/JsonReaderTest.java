@@ -1,8 +1,10 @@
-package persistence;
+package model;
 
 import model.TrainingSession;
-import model.WorkRoom;
+import model.TrainingLog;
 import org.junit.jupiter.api.Test;
+import persistence.JsonReader;
+import persistence.JsonTest;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,7 +20,7 @@ class JsonReaderTest extends JsonTest {
     void testReaderNonExistentFile() {
         JsonReader reader = new JsonReader("./data/noSuchFile.json");
         try {
-            WorkRoom wr = reader.read();
+            TrainingLog wr = reader.read();
             fail("IOException expected");
         } catch (IOException e) {
             // pass
@@ -29,11 +31,11 @@ class JsonReaderTest extends JsonTest {
     // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
     @Test
-    void testReaderEmptyWorkRoom() {
-        JsonReader reader = new JsonReader("./data/testReaderEmptyWorkRoom.json");
+    void testReaderEmptyTrainingLog() {
+        JsonReader reader = new JsonReader("./data/testReaderEmptyTrainingLog.json");
         try {
-            WorkRoom wr = reader.read();
-            assertEquals("My work room", wr.getName());
+            TrainingLog wr = reader.read();
+            assertEquals("My training log", wr.getName());
             assertEquals(0, wr.numTrainingSessions());
         } catch (IOException e) {
             fail("Couldn't read from file");
@@ -41,11 +43,11 @@ class JsonReaderTest extends JsonTest {
     }
 
     @Test
-    void testReaderGeneralWorkRoom() {
-        JsonReader reader = new JsonReader("./data/testReaderGeneralWorkRoom.json");
+    void testReaderGeneralTrainingLog() {
+        JsonReader reader = new JsonReader("./data/testReaderGeneralTrainingLog.json");
         try {
-            WorkRoom wr = reader.read();
-            assertEquals("My work room", wr.getName());
+            TrainingLog wr = reader.read();
+            assertEquals("My training log", wr.getName());
             List<TrainingSession> trainingSessions = wr.getTrainingSessions();
             assertEquals(2, trainingSessions.size());
             checkTrainingSession("Run", 30, 6.0, " ", 6, trainingSessions.get(0));

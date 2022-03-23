@@ -1,8 +1,11 @@
-package persistence;
+package model;
 
 import model.TrainingSession;
-import model.WorkRoom;
+import model.TrainingLog;
 import org.junit.jupiter.api.Test;
+import persistence.JsonReader;
+import persistence.JsonTest;
+import persistence.JsonWriter;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,7 +20,7 @@ class JsonWriterTest extends JsonTest {
     @Test
     void testWriterInvalidFile() {
         try {
-            WorkRoom wr = new WorkRoom("My work room");
+            TrainingLog wr = new TrainingLog("My work room");
             JsonWriter writer = new JsonWriter("./data/my\0illegal:fileName.json");
             writer.open();
             fail("IOException was expected");
@@ -30,18 +33,18 @@ class JsonWriterTest extends JsonTest {
     // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
     @Test
-    void testWriterEmptyWorkroom() {
+    void testWriterEmptyTrainingLog() {
         try {
-            WorkRoom wr = new WorkRoom("My work room");
-            JsonWriter writer = new JsonWriter("./data/testWriterEmptyWorkroom.json");
+            TrainingLog tl = new TrainingLog("My work room");
+            JsonWriter writer = new JsonWriter("./data/testWriterEmptyTrainingLog.json");
             writer.open();
-            writer.write(wr);
+            writer.write(tl);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterEmptyWorkroom.json");
-            wr = reader.read();
-            assertEquals("My work room", wr.getName());
-            assertEquals(0, wr.numTrainingSessions());
+            JsonReader reader = new JsonReader("./data/testWriterEmptyTrainingLog.json");
+            tl = reader.read();
+            assertEquals("My work room", tl.getName());
+            assertEquals(0, tl.numTrainingSessions());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }
@@ -50,18 +53,18 @@ class JsonWriterTest extends JsonTest {
     @Test
     void testWriterGeneralWorkroom() {
         try {
-            WorkRoom wr = new WorkRoom("My work room");
-            wr.addTrainingSession(new TrainingSession("Run", 30, 6, "", 6));
-            wr.addTrainingSession(new TrainingSession("Swim", 25, 1.6, "fun swim", 3));
-            JsonWriter writer = new JsonWriter("./data/testWriterGeneralWorkroom.json");
+            TrainingLog tl = new TrainingLog("My work room");
+            tl.addTrainingSession(new TrainingSession("Run", 30, 6, "", 6));
+            tl.addTrainingSession(new TrainingSession("Swim", 25, 1.6, "fun swim", 3));
+            JsonWriter writer = new JsonWriter("./data/testWriterGeneralTrainingLog.json");
             writer.open();
-            writer.write(wr);
+            writer.write(tl);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterGeneralWorkroom.json");
-            wr = reader.read();
-            assertEquals("My work room", wr.getName());
-            List<TrainingSession> trainingSessions = wr.getTrainingSessions();
+            JsonReader reader = new JsonReader("./data/testWriterGeneralTrainingLog.json");
+            tl = reader.read();
+            assertEquals("My work room", tl.getName());
+            List<TrainingSession> trainingSessions = tl.getTrainingSessions();
             assertEquals(2, trainingSessions.size());
             checkTrainingSession("Run", 30, 6.0, " ", 6, trainingSessions.get(0));
             checkTrainingSession("Swim", 25, 1.6, "fun swim", 3, trainingSessions.get(1));

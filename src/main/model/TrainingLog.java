@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-// Represents a workroom having a collection of training sessions
-public class WorkRoom implements Writable {
+// Represents a training log having a collection of training sessions
+public class TrainingLog implements Writable {
     private String name;
-    private List<TrainingSession> trainingSessions;
+    List<TrainingSession> trainingSessions;
 
-    // EFFECTS: constructs workroom with a name and empty list of training sessions
-    public WorkRoom(String name) {
+    // EFFECTS: constructs training log with a name and empty list of training sessions
+    public TrainingLog(String name) {
         this.name = name;
         trainingSessions = new ArrayList<>();
     }
@@ -24,23 +24,23 @@ public class WorkRoom implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds training session to this workroom
+    // EFFECTS: adds training session to this training log
     public void addTrainingSession(TrainingSession trainingSession) {
         trainingSessions.add(trainingSession);
     }
 
     // MODIFIES: this
-    // EFFECTS: removes training session from this workroom
+    // EFFECTS: removes training session from this training log
     public void removeTrainingSession() {
         trainingSessions.remove(getTrainingSessions().size() - 1);
     }
 
-    // EFFECTS: returns an unmodifiable list of training sessions in this workroom
+    // EFFECTS: returns an unmodifiable list of training sessions in this training log
     public List<TrainingSession> getTrainingSessions() {
         return Collections.unmodifiableList(trainingSessions);
     }
 
-    // EFFECTS: returns number of training sessions in this workroom
+    // EFFECTS: returns number of training sessions in this training log
     public int numTrainingSessions() {
         return trainingSessions.size();
     }
@@ -53,7 +53,7 @@ public class WorkRoom implements Writable {
         return json;
     }
 
-    // EFFECTS: returns training sessions in this workroom as a JSON array
+    // EFFECTS: returns training sessions in this training log as a JSON array
     private JSONArray trainingSessionsToJson() {
         JSONArray jsonArray = new JSONArray();
 
