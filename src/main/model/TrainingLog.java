@@ -45,6 +45,17 @@ public class TrainingLog implements Writable {
         return trainingSessions.size();
     }
 
+    // EFFECTS: displays all training sessions in training log to panel
+    public String printTrainingSessions() {
+        String workouts = "";
+        for (TrainingSession t : trainingSessions) {
+            workouts += ("\n\nWorkout Type: " + t.getName() + "\nWorkout Duration: "
+                    + t.getDuration() + "\nWorkout Distance: " + t.getDistance()
+                    + "\nWorkout Notes: " + t.getNotes() + "\nWorkout Effort: " + t.getEffort());
+        }
+        return workouts;
+    }
+
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
