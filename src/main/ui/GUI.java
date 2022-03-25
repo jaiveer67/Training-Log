@@ -160,6 +160,7 @@ public class GUI extends JFrame implements ActionListener {
         trainingLog.setVisible(false);
     }
 
+    // EFFECTS: Create fields for user to input training session
     public void createSessionsPage() {
         addToLogButton = new JButton("Add workout to log");
         formatButton(addToLogButton);
@@ -184,6 +185,7 @@ public class GUI extends JFrame implements ActionListener {
         textField5 = new JTextField(5);
     }
 
+    // EFFECTS: Adds created fields for user to session page
     public void addSectionsToSession() {
         sessionPage.add(type);
         sessionPage.add(textField1);
