@@ -1,19 +1,4 @@
 {
-    "training sessions": [
-        {
-            "duration": 30,
-            "notes": "",
-            "distance": 6,
-            "name": "Run",
-            "effort": 4
-        },
-        {
-            "duration": 30,
-            "notes": "",
-            "distance": 6,
-            "name": "Run",
-            "effort": 3
-        }
-    ],
-    "name": "Jaiveer's workroom"
+    "training sessions": [],
+    "name": "Jaiveer's Training log"
 }

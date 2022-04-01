@@ -27,12 +27,14 @@ public class TrainingLog implements Writable {
     // EFFECTS: adds training session to this training log
     public void addTrainingSession(TrainingSession trainingSession) {
         trainingSessions.add(trainingSession);
+        EventLog.getInstance().logEvent(new Event("Added new session to training log"));
     }
 
     // MODIFIES: this
     // EFFECTS: removes training session from this training log
     public void removeTrainingSession() {
         trainingSessions.remove(getTrainingSessions().size() - 1);
+        EventLog.getInstance().logEvent(new Event("Removed most recent session from training log"));
     }
 
     // EFFECTS: returns an unmodifiable list of training sessions in this training log

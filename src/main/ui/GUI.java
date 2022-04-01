@@ -1,10 +1,13 @@
 
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.TrainingLog;
 import model.TrainingSession;
 import persistence.JsonReader;
 import persistence.JsonWriter;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.FileNotFoundException;
@@ -43,7 +46,13 @@ public class GUI extends JFrame implements ActionListener {
         super("Training Log");
         jsonWriter = new JsonWriter("./data/trainingLog.json");
         jsonReader = new JsonReader("./data/trainingLog.json");
+        log = new TrainingLog("Jaiveer's Training log");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                System.out.println(printLog(EventLog.getInstance()));
+            }
+        });
         setPreferredSize(new Dimension(800, 800));
         displayMenu();
         trainingLogPanel();
@@ -93,7 +102,7 @@ public class GUI extends JFrame implements ActionListener {
     // MODIFIES: this
     // EFFECTS: adds button to provided panel
     public void addButton(JButton button, JPanel panel) {
-        button.setSize(30,30);
+        button.setSize(30, 30);
         panel.add(button);
         pack();
         setVisible(true);
@@ -139,6 +148,7 @@ public class GUI extends JFrame implements ActionListener {
         } else if (e.getActionCommand().equals("Return to main menu")) {
             backToMainMenu();
         } else if (e.getActionCommand().equals("Exit application")) {
+            System.out.println(printLog(EventLog.getInstance()));
             System.exit(0);
         }
     }
@@ -207,6 +217,7 @@ public class GUI extends JFrame implements ActionListener {
                     textField3.getText(), textField4.getText(), textField5.getText());
 
             log.addTrainingSession(workout);
+            workouts.setText("<html><pre>Recorded Workouts: \n" + log.printTrainingSessions() + "\n </pre></html> \n");
 
         } catch (NumberFormatException e) {
             System.out.println("Invalid input, please try again");
@@ -219,6 +230,7 @@ public class GUI extends JFrame implements ActionListener {
     public void removeTrainingSession() {
         try {
             log.removeTrainingSession();
+            workouts.setText("<html><pre>Recorded Workouts: \n" + log.printTrainingSessions() + "\n </pre></html> \n");
         } catch (NullPointerException e) {
             System.out.println("Log is empty");
         } catch (IndexOutOfBoundsException e) {
@@ -266,13 +278,20 @@ public class GUI extends JFrame implements ActionListener {
         sessionPage.setVisible(false);
     }
 
+    public String printLog(EventLog el) {
+        String output = "";
+        for (Event next : el) {
+            output += next.toString() + "\n\n";
+        }
+        return output;
+    }
+
     // EFFECTS: Saves inputted training sessions to file
     public void saveLog() {
         try {
             jsonWriter.open();
             jsonWriter.write(log);
             jsonWriter.close();
-            System.out.println("Saved " + trainingLog.getName() + " to " + "./data/trainingLog.json");
         } catch (FileNotFoundException e) {
             System.out.println("Unable to save to file: " + "./data/trainingLog.json");
         }
@@ -282,7 +301,6 @@ public class GUI extends JFrame implements ActionListener {
     public void loadLog() {
         try {
             log = jsonReader.read();
-            System.out.println("Loaded " + trainingLog.getName() + " from " + "./data/trainingLog.json");
             workouts.setText("<html><pre>Recorded Workouts: \n" + log.printTrainingSessions() + "\n </pre></html> \n");
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + "./data/trainingLog.json");

@@ -29,3 +29,20 @@ and a training log is something I use on a daily basis.
 - As a user, I want to be able to add a description of my workouts
 - As a user, I want to be able to save my training log
 - As a user, I want to be able to load my previously saved training log
+
+## Phase 4: Task 2 - 
+
+Thu Mar 31 17:19:24 PDT 2022
+Added new session to training log
+
+Thu Mar 31 17:19:24 PDT 2022
+Added new session to training log
+
+Thu Mar 31 17:19:24 PDT 2022
+Added new session to training log
+
+Thu Mar 31 17:19:27 PDT 2022
+Removed most recent session from training log
+
+Thu Mar 31 17:19:46 PDT 2022
+Added new session to training log
