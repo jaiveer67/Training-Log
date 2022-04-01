@@ -67,7 +67,6 @@ public class TrainingSession implements Writable {
                 + "\nWorkout Notes: " + this.notes + "\nWorkout Effort: " + this.effort;
     }
 
-
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

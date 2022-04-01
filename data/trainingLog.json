@@ -1,4 +1,10 @@
 {
-    "training sessions": [],
+    "training sessions": [{
+        "duration": 30,
+        "notes": "",
+        "distance": 5,
+        "name": "Run",
+        "effort": 3
+    }],
     "name": "Jaiveer's Training log"
 }

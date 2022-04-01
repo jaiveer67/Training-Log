@@ -46,3 +46,20 @@ Removed most recent session from training log
 
 Thu Mar 31 17:19:46 PDT 2022
 Added new session to training log
+
+## Phase 4: Task 3 -
+
+My UML diagram is quite simple as my project has few 
+relationships between classes, but this is also the area
+where I could possibly make a change and refactor my classes.
+A change I could possibly make is 
+- Splitting GUI class up into multiple classes for each panel
+
+Each of these classes would include an association to a singular training log.
+I think by splitting up my GUI class it would help make 
+the functionality of each panel within my project more clear.
+
+Aside from that change there is not much else I would consider refactoring
+at this point in time and with the coding knowledge I have so far, unless
+I was going to add some extra functionality or extended my application
+in some way.
